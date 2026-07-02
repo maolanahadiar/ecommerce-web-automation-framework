@@ -7,7 +7,7 @@ def test_checkout_success(add_product_to_cart):
     checkout_page = CheckoutPage(add_product_to_cart)
     
     checkout_page.place_order()
-    checkout_page.input_order_detail(
+    checkout_page.input_billing_details(
         CHECKOUT_DATA["name"],
         CHECKOUT_DATA["country"],
         CHECKOUT_DATA["city"],

@@ -20,8 +20,8 @@ class CheckoutPage(BasePage):
     def place_order(self):
         self.click(*self.ORDER_BUTTON)
 
-    @allure.step("Input order")
-    def input_order_detail(self, name, country, city, card_number, month, year):
+    @allure.step("Input billing detail")
+    def input_billing_details(self, name, country, city, card_number, month, year):
         self.type(*self.NAME_INPUT,text=name)
         self.type(*self.COUNTRY_INPUT,text=country)
         self.type(*self.CITY_INPUT,text=city)
