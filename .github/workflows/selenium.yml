@@ -1,0 +1,57 @@
+name: Ecommerce Web Automation Framework
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+
+  ui-test:
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+
+        with:
+          python-version: "3.14"
+
+      - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Selenium Tests
+        run: |
+          pytest \
+          tests/test_logout.py::test_logout_success \
+          -v \
+          --alluredir=reports/allure-results
+
+      - name: Upload Allure Results
+        if: always()
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: allure-results
+
+          path: reports/allure-results

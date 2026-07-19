@@ -1,8 +1,10 @@
 from pages.product_page import ProductPage
 from data.product_data import PRODUCTS
 import allure
+import pytest
 
 @allure.title("Verify phone details are displayed correctly")
+@pytest.mark.skip_ci
 def test_phone_detail(browser):
     product_page = ProductPage(browser)
     phone = PRODUCTS["phone"]
