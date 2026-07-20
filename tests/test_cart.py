@@ -1,18 +1,18 @@
-from pages.cart_page import CartPage
-from data.product_data import PRODUCTS
-import allure
 import pytest
+import allure
+from pages.cart_page import CartPage
+from testdata.products import PRODUCTS_DATA
 
 @allure.title("Verify user can add product to cart")
 @pytest.mark.skip_ci
 def test_product_detail_in_cart(open_product):
     cart_page = CartPage(open_product)
-    phone = PRODUCTS["phone"]
+    phone = PRODUCTS_DATA["phone"]
     
     cart_page.add_phone_to_cart()
     
-    assert phone["name"] in cart_page.get_phone_name_in_cart()
-    assert phone["price"] in cart_page.get_phone_price_in_cart()
+    assert cart_page.get_phone_name_in_cart() == phone["name"]
+    assert cart_page.get_phone_price_in_cart() == phone["price"]
     
     cart_page.delete_products_in_cart()
 

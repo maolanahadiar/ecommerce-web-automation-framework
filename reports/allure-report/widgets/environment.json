@@ -1,1 +1,1 @@
-[{"values":["https://demoblaze.com/"],"name":"Project"},{"values":["QA"],"name":"Environment"},{"values":["Chrome"],"name":"Browser"},{"values":["False"],"name":"Headless"},{"values":["macOS-15.6.1-arm64-arm-64bit-Mach-O"],"name":"OS"},{"values":["3.14.0"],"name":"Python"}]
+[{"values":["https://demoblaze.com/"],"name":"Project"},{"values":["QA"],"name":"Environment"},{"values":["Chrome"],"name":"Browser"},{"values":["True"],"name":"Headless"},{"values":["macOS-26.5.2-arm64-arm-64bit-Mach-O"],"name":"OS"},{"values":["3.14.0"],"name":"Python"}]

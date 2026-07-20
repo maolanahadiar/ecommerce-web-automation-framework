@@ -4,8 +4,8 @@ import json
 import platform
 import sys
 import shutil
-from config.settings import Config
 import allure
+from config.settings import Config
 
 class AllureHelper:
 

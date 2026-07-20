@@ -1,7 +1,7 @@
-from pages.login_page import LoginPage
-from data.login_data import VALID_CREDENTIALS, INVALID_CREDENTIALS
 import pytest
 import allure
+from pages.login_page import LoginPage
+from testdata.credentials import VALID_CREDENTIALS, INVALID_CREDENTIALS
 
 @allure.title("Verify user can login with valid credentials")
 def test_login_success(browser):  
@@ -10,7 +10,7 @@ def test_login_success(browser):
     login_page.open()
     login_page.click_login_menu()
     
-    assert "Log in" in login_page.get_login_popup_screen()
+    assert login_page.get_login_popup_screen() == "Log in" 
     
     login_page.input_login_form(
         VALID_CREDENTIALS["username"],
@@ -18,7 +18,7 @@ def test_login_success(browser):
     )
     login_page.click_login_button()
 
-    assert VALID_CREDENTIALS["expected_message"] == login_page.get_login_success_message()
+    assert login_page.get_login_success_message() == VALID_CREDENTIALS["expected_message"] 
 
 @pytest.mark.parametrize("INVALID_CREDENTIALS",INVALID_CREDENTIALS)
 def test_login_failed(browser, INVALID_CREDENTIALS):
@@ -31,7 +31,7 @@ def test_login_failed(browser, INVALID_CREDENTIALS):
     login_page.open()
     login_page.click_login_menu()
 
-    assert "Log in" in login_page.get_login_popup_screen()
+    assert login_page.get_login_popup_screen() == "Log in"
     
     login_page.input_login_form(
         INVALID_CREDENTIALS["username"],
@@ -39,5 +39,5 @@ def test_login_failed(browser, INVALID_CREDENTIALS):
     )
     login_page.click_login_button()
 
-    assert INVALID_CREDENTIALS["expected_message"] == login_page.get_login_error_message()
+    assert login_page.get_login_error_message() == INVALID_CREDENTIALS["error_message"]
     login_page.accept_alert()

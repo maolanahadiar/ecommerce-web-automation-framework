@@ -1,6 +1,6 @@
+import random
 from faker import Faker
 from datetime import datetime
-import random
 
 fake = Faker()
 

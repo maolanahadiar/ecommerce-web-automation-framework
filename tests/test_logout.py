@@ -1,5 +1,5 @@
-from pages.logout_page import LogoutPage
 import allure
+from pages.logout_page import LogoutPage
 
 @allure.title("Verify user can logout successfully")
 def test_logout_success(logged_in_user):
