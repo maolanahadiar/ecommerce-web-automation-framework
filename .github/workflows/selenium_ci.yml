@@ -12,8 +12,8 @@ on:
   workflow_dispatch:
 
   schedule:
-    #simulate run smoke tests everyday
-    - cron: "30 11 * * *"
+    #simulate to run smoke tests by scheduling
+    - cron: '*/5 * * * *'
 
 jobs:
 
@@ -47,10 +47,10 @@ jobs:
           echo "Triggered by: ${{ github.event_name }}"
           
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "Running Smoke Test..."
+            echo "Running Smoke Tests..."
             pytest -m "smoke" --alluredir=reports/allure-results
           else
-            echo "Running Test..."
+            echo "Running All Tests..."
             pytest -m "not skip_ci" --alluredir=reports/allure-results
           fi
                   
