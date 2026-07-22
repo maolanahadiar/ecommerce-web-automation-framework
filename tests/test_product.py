@@ -4,6 +4,7 @@ from pages.product_page import ProductPage
 from testdata.products import PRODUCTS_DATA
 
 @pytest.mark.skip_ci
+@pytest.mark.regression
 @allure.title("Verify phone details are displayed correctly")
 def test_phone_detail(browser):
     product_page = ProductPage(browser)
@@ -16,7 +17,8 @@ def test_phone_detail(browser):
     assert product_page.get_phone_name() == phone["name"]
     assert phone["price"] in product_page.get_phone_price()
     assert phone["description"] in product_page.get_phone_description()
-    
+
+@pytest.mark.regression
 @allure.title("Verify laptop details are displayed correctly")
 def test_laptop_detail(browser):
     product_page = ProductPage(browser)

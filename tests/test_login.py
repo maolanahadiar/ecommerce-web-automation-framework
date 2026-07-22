@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 from testdata.credentials import VALID_CREDENTIALS, INVALID_CREDENTIALS
 
 @pytest.mark.smoke
+@pytest.mark.regression
 @allure.title("Verify user can login with valid credentials")
 def test_login_success(browser):  
     login_page = LoginPage(browser)
@@ -21,6 +22,7 @@ def test_login_success(browser):
 
     assert login_page.get_login_success_message() == VALID_CREDENTIALS["expected_message"] 
 
+@pytest.mark.regression
 @pytest.mark.parametrize("INVALID_CREDENTIALS",INVALID_CREDENTIALS)
 def test_login_failed(browser, INVALID_CREDENTIALS):
     

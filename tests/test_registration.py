@@ -4,6 +4,7 @@ from pages.registration_page import RegistrationPage
 from testdata.registration import REGISTRATION_DATA
 
 @pytest.mark.smoke
+@pytest.mark.regression
 @allure.title("Verify user can register successfully")
 def test_registration_success(browser):
     registration_page = RegistrationPage(browser)
@@ -21,7 +22,8 @@ def test_registration_success(browser):
     registration_page.click_registration_button()
     
     assert registration_page.get_registration_success_message() == valid_data["expected_message"]
-    
+
+@pytest.mark.regression
 @allure.title("Verify user cannot register using existing username")
 def test_registration_failed(browser):
     registration_page = RegistrationPage(browser)    

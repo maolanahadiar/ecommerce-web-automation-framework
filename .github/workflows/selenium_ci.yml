@@ -12,8 +12,8 @@ on:
   workflow_dispatch:
 
   schedule:
-    #simulate to run smoke tests by scheduling
-    - cron: '*/5 * * * *'
+    #simulate monthly regression test execution
+    - cron: '0 18 1 * *'
 
 jobs:
 
@@ -47,13 +47,13 @@ jobs:
           echo "Triggered by: ${{ github.event_name }}"
           
           if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Running Regression Tests..."
+            pytest -m "regression and not skip_ci" --alluredir=reports/allure-results
+          else
             echo "Running Smoke Tests..."
             pytest -m "smoke" --alluredir=reports/allure-results
-          else
-            echo "Running All Tests..."
-            pytest -m "not skip_ci" --alluredir=reports/allure-results
           fi
-                  
+
       - name: Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
